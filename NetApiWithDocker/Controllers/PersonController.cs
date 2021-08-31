@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using NetApiWithDocker.Model;
+using NetApiWithDocker.Services.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,105 +10,58 @@ using System.Threading.Tasks;
 namespace NetApiWithDocker.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class CalculatorController : ControllerBase
+    [Route("api/[controller]")]
+    public class PersonController : ControllerBase
     {
-     
-        private readonly ILogger<CalculatorController> _logger;
+        private readonly ILogger<PersonController> _logger;
+        private IPersonService _personService;
 
-        public CalculatorController(ILogger<CalculatorController> logger)
+        public PersonController(ILogger<PersonController> logger, IPersonService personService)
         {
             _logger = logger;
+            _personService = personService;
         }
 
-        [HttpGet("sum/{firstNumber}/{secondNumber}")]
-        public IActionResult Sum(string firstNumber, string secondNumber)
+        [HttpGet]
+        public IActionResult Get()
         {
-            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
-            {
-                var sum = ConvertToDecimal(firstNumber) + ConvertToDecimal(secondNumber);
-                return Ok(sum.ToString());
-            }
-
-            return BadRequest("Invalid Input");
+            return Ok(_personService.FindAll());
         }
 
-        [HttpGet("sub/{firstNumber}/{secondNumber}")]
-        public IActionResult Subtract (string firstNumber, string secondNumber)
-        {
-            if(IsNumeric(firstNumber) && IsNumeric(secondNumber))
-            {
-                var sub = ConvertToDecimal(firstNumber) - ConvertToDecimal(secondNumber);
-                return Ok(sub.ToString()); // Lembrar que os métodos são do tipo IActionResult e sempre retornam um tipo de status code
-            }
 
-            return BadRequest("Invalid Input");
+        [HttpGet("{id}")] //O metodo pode ter o mesmo nome desde que os paths sejam diferentes para não dar conflito, neste caso é passado o ID para buscar um só objeto.
+        public IActionResult Get(long id)
+        {
+            var person = _personService.FindById(id);
+            
+            if (person == null) return NotFound();
+
+            return Ok(person);
         }
 
-        [HttpGet("div/{firstNumber}/{secondNumber}")]
-        public IActionResult Division (string firstNumber, string secondNumber)
+        [HttpPost]
+        public IActionResult Post([FromBody] Person person) // Vai postar o corpo (objeto Json) com os dados a serem criados
         {
-            if(IsNumeric(firstNumber) && IsNumeric(secondNumber))
-            {
-                var div = ConvertToDecimal(firstNumber) / ConvertToDecimal(secondNumber);
-                return Ok(div.ToString());
-            }
-            return BadRequest("Invalid Input");
+            if (person == null) return BadRequest();
+
+            return Ok(_personService.Create(person));
         }
 
-        [HttpGet("mult/{firstNumber}/{secondNumber}")]
-        public IActionResult Multiplication(string firstNumber, string secondNumber) 
+        [HttpPut]
+        public IActionResult Put([FromBody] Person person)
         {
-            if(IsNumeric(firstNumber) && IsNumeric(secondNumber))
-            {
-                var mult = ConvertToDecimal(firstNumber) * ConvertToDecimal(secondNumber);
-                return Ok(mult.ToString());
-            }
+            if (person == null) return BadRequest();
 
-            return BadRequest("Invalid Input");
+            return Ok(_personService.Update(person));
+
         }
 
-        [HttpGet("mean/{firstNumber}/{secondNumber}")]
-        public IActionResult Mean(string firstNumber, string secondNumber)
+        [HttpDelete("{id}")]
+        public IActionResult Delete(long id)
         {
-            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
-            {
-                var mean = (ConvertToDecimal(firstNumber) + ConvertToDecimal(secondNumber))/2;
-                return Ok(mean.ToString());
-            }
+            _personService.Delete(id); // Não está implementado na interface pois ainda não tem nada persistido no banco de dados.
 
-            return BadRequest("Invalid Input");
-        }
-
-        [HttpGet("square-root/{number}")]
-        public IActionResult SquareRoot(string number)
-        {
-            if (IsNumeric(number))
-            {
-                var squareRoot = Math.Sqrt((double)ConvertToDecimal(number));
-                return Ok(squareRoot.ToString());
-            }
-            return Ok("Invalid Input");
-        }
-        private decimal ConvertToDecimal(string number)
-        {
-            decimal decimalValue;
-            if (decimal.TryParse(number, out decimalValue))
-            {
-                return decimalValue;
-            }
-            return 0;
-        }
-
-        private bool IsNumeric(string strNumber)
-        {
-            double number;
-            bool isNumber = double.TryParse(
-                strNumber,
-                System.Globalization.NumberStyles.Any, 
-                System.Globalization.NumberFormatInfo.InvariantInfo,
-                out number);
-            return isNumber;
+            return NoContent();
         }
 
     }
