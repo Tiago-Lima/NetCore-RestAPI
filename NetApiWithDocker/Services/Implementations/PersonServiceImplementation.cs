@@ -1,4 +1,5 @@
 ﻿using NetApiWithDocker.Model;
+using NetApiWithDocker.Model.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,12 @@ namespace NetApiWithDocker.Services.Implementations
 {
     public class PersonServiceImplementation : IPersonService
     {
-        private volatile int count;
+        private MySQLContext _context ;
 
+        public PersonServiceImplementation( MySQLContext context)
+        {
+            _context = context;
+        }
         public Person Create(Person person)
         {
             return person;
@@ -23,14 +28,8 @@ namespace NetApiWithDocker.Services.Implementations
 
         public List<Person> FindAll()
         {
-            List<Person> persons = new List<Person>();
-            for(int i=0; i<8; i++)
-            {
-                Person person = MockPersons(i);
-                persons.Add(person);
-            }
            
-            return persons;
+            return _context.Persons.ToList();
         }
 
    
@@ -70,7 +69,7 @@ namespace NetApiWithDocker.Services.Implementations
 
         private long IncrementAndGet()
         {
-            return Interlocked.Increment(ref count);
+            return 0;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace NetApiWithDocker.Controllers
         public PersonController(ILogger<PersonController> logger, IPersonService personService)
         {
             _logger = logger;
-            _personService = personService;
+            _personService = personService; // Passando o serviço no construtor do controller, também é preciso injetar essa dependência na classe Startup
         }
 
         [HttpGet]
