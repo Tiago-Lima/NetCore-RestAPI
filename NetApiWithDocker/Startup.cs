@@ -29,6 +29,7 @@ namespace NetApiWithDocker
         {
 
             services.AddControllers();
+            services.AddApiVersioning();
 
             var connection = Configuration["MySQLConnection:MySQLConnectionString"]; // string de conexão
 

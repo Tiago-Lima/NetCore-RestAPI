@@ -29,3 +29,5 @@ C:\Users\tiago\Desktop\Workspace\NetCore-with-Docker\NetApiWithDocker\bin\Debug\
 C:\Users\tiago\Desktop\Workspace\NetCore-with-Docker\NetApiWithDocker\bin\Debug\net5.0\Pomelo.EntityFrameworkCore.MySql.dll
 C:\Users\tiago\Desktop\Workspace\NetCore-with-Docker\NetApiWithDocker\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
 C:\Users\tiago\Desktop\Workspace\NetCore-with-Docker\NetApiWithDocker\obj\Debug\net5.0\NetApiWithDocker.csproj.CopyComplete
+C:\Users\tiago\Desktop\Workspace\NetCore-with-Docker\NetApiWithDocker\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Versioning.dll
+C:\Users\tiago\Desktop\Workspace\NetCore-with-Docker\NetApiWithDocker\obj\Debug\net5.0\NetApiWithDocker.MvcApplicationPartsAssemblyInfo.cs
