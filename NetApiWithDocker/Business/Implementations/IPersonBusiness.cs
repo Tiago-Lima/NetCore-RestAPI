@@ -1,9 +1,9 @@
 ﻿using NetApiWithDocker.Model;
 using System.Collections.Generic;
 
-namespace NetApiWithDocker.Services.Implementations
+namespace NetApiWithDocker.Business.Implementations
 {
-    public interface IPersonService
+    public interface IPersonBusiness
     {
         Person Create(Person person);
         Person FindById(long id);
