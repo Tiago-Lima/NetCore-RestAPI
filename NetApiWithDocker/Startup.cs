@@ -83,8 +83,8 @@ namespace NetApiWithDocker
                 var evolveConnection = new MySql.Data.MySqlClient.MySqlConnection(connection);
                 var evolve = new EvolveDb.Evolve(evolveConnection, msg => Log.Information(msg))
                 {
-                    Locations = new List<string> { "db/migrations", "db/dataset" },
-                    IsEraseDisabled = true,
+                    Locations = new List<string> { "db/migrations", "db/dataset" }, //O padrão seguido aqui é o de migrations e Seeders. Migrations são modificações sequenciais feitas que podem ser revertidas.
+                    IsEraseDisabled = true,                                            // DataSet ou Seeders são semeadores que populam a base de dados.
                 };
                 evolve.Migrate();
             }
