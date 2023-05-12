@@ -12,6 +12,8 @@ namespace NetApiWithDocker.Model.Context
 
         public MySQLContext(DbContextOptions<MySQLContext> options) : base (options) { } // Construtor do Entity framework
 
-        public DbSet<Person> Persons { get; set; } 
+        public DbSet<Person> Persons { get; set; }
+
+        public DbSet<Book> Books { get; set; }
     }
 }

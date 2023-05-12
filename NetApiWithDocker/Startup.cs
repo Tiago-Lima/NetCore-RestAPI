@@ -48,10 +48,8 @@ namespace NetApiWithDocker
                 MigrateDatabase(connection);
             }
 
-
-            services.AddApiVersioning();
             //Injeção de dependências
-
+            services.AddApiVersioning();
             services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
             services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
         }
