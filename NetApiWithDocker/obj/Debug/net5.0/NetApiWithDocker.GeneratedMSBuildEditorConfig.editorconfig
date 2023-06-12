@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = NetApiWithDocker
-build_property.ProjectDir = C:\Users\tiago\Desktop\Workspace\NetCore-with-Docker\NetApiWithDocker\
+build_property.ProjectDir = C:\Users\tiago\Desktop\Workspace\NetCore-RestAPI\NetApiWithDocker\

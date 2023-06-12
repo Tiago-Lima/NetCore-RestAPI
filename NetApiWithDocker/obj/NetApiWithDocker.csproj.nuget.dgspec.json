@@ -1,22 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tiago\\Desktop\\Workspace\\NetCore-with-Docker\\NetApiWithDocker\\NetApiWithDocker.csproj": {}
+    "C:\\Users\\tiago\\Desktop\\Workspace\\NetCore-RestAPI\\NetApiWithDocker\\NetApiWithDocker.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tiago\\Desktop\\Workspace\\NetCore-with-Docker\\NetApiWithDocker\\NetApiWithDocker.csproj": {
+    "C:\\Users\\tiago\\Desktop\\Workspace\\NetCore-RestAPI\\NetApiWithDocker\\NetApiWithDocker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tiago\\Desktop\\Workspace\\NetCore-with-Docker\\NetApiWithDocker\\NetApiWithDocker.csproj",
+        "projectUniqueName": "C:\\Users\\tiago\\Desktop\\Workspace\\NetCore-RestAPI\\NetApiWithDocker\\NetApiWithDocker.csproj",
         "projectName": "NetApiWithDocker",
-        "projectPath": "C:\\Users\\tiago\\Desktop\\Workspace\\NetCore-with-Docker\\NetApiWithDocker\\NetApiWithDocker.csproj",
+        "projectPath": "C:\\Users\\tiago\\Desktop\\Workspace\\NetCore-RestAPI\\NetApiWithDocker\\NetApiWithDocker.csproj",
         "packagesPath": "C:\\Users\\tiago\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tiago\\Desktop\\Workspace\\NetCore-with-Docker\\NetApiWithDocker\\obj\\",
+        "outputPath": "C:\\Users\\tiago\\Desktop\\Workspace\\NetCore-RestAPI\\NetApiWithDocker\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\tiago\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -94,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.411\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     }
