@@ -11,9 +11,9 @@ namespace NetApiWithDocker.Business.Implementations
 {
     public class PersonBusinessImplementation : IPersonBusiness
     {
-        private readonly IPersonRepository _repository ; //Criando uma instância da classe contexto para ser injetada nesta classe
+        private readonly IRepository<Person> _repository ; //Criando uma instância da classe contexto para ser injetada nesta classe
 
-        public PersonBusinessImplementation(IPersonRepository repository)
+        public PersonBusinessImplementation(IRepository<Person> repository)
         {
             _repository = repository;
         }
