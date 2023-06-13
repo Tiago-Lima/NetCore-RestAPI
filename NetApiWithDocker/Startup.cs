@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using NetApiWithDocker.Business;
 using NetApiWithDocker.Business.Implementations;
 using NetApiWithDocker.Model.Context;
+using NetApiWithDocker.Repository.Generic;
 using NetApiWithDocker.Repository.Implementations;
 using Serilog;
 using System;
@@ -54,7 +55,8 @@ namespace NetApiWithDocker
             services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
             services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
             services.AddScoped<IBookBusiness, BookBusinessImplementation>();
-            services.AddScoped<IBookRepository, BookRepositoryImplementation>();
+
+            services.AddScoped(typeof(IRepository<>),typeof(GenericRepository<>));
         }
 
      
