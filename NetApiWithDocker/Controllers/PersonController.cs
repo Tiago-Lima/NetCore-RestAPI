@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NetApiWithDocker.Business.Implementations;
-using NetApiWithDocker.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using NetApiWithDocker.Data.VO;
 
 namespace NetApiWithDocker.Controllers
 {
@@ -41,7 +37,7 @@ namespace NetApiWithDocker.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Person person) // Vai postar o corpo (objeto Json) com os dados a serem criados
+        public IActionResult Post([FromBody] PersonVO person) // Vai postar o corpo (objeto Json) com os dados a serem criados
         {
             if (person == null) return BadRequest();
 
@@ -49,7 +45,7 @@ namespace NetApiWithDocker.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put([FromBody] Person person)
+        public IActionResult Put([FromBody] PersonVO person)
         {
             if (person == null) return BadRequest();
 

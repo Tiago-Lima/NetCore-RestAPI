@@ -1,26 +1,26 @@
-﻿using NetApiWithDocker.Model;
-using NetApiWithDocker.Model.Context;
+﻿using NetApiWithDocker.Data.Converter.Implementation;
+using NetApiWithDocker.Data.VO;
+using NetApiWithDocker.Model;
 using NetApiWithDocker.Repository.Implementations;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace NetApiWithDocker.Business.Implementations
 {
     public class PersonBusinessImplementation : IPersonBusiness
     {
-        private readonly IRepository<Person> _repository ; //Criando uma instância da classe contexto para ser injetada nesta classe
+        private readonly IRepository<Person> _repository ;
+        private readonly PersonConverter _converter;//Criando uma instância da classe contexto para ser injetada nesta classe
 
         public PersonBusinessImplementation(IRepository<Person> repository)
         {
             _repository = repository;
+            _converter = new PersonConverter();
         }
-        public Person Create(Person person)
+        public PersonVO Create(PersonVO person)
         {
-         
-            return _repository.Create(person);
+            var personEntity = _converter.Parse(person);
+            personEntity = _repository.Create(personEntity);
+            return _converter.Parse(personEntity);
         }
 
         public void Delete(long id)
@@ -29,23 +29,25 @@ namespace NetApiWithDocker.Business.Implementations
         
         }
 
-        public List<Person> FindAll()
+        public List<PersonVO> FindAll()
         {
            
-            return _repository.FindAll();
+            return _converter.Parse(_repository.FindAll());
         }
 
    
 
-        public Person FindById(long id)
+        public PersonVO FindById(long id)
         {
-            return _repository.FindById(id); //método da classe context injetada
+            return _converter.Parse(_repository.FindById(id)); //método da classe context injetada
         }
 
-        public Person Update(Person person)
+        public PersonVO Update(PersonVO person)
         {
-         
-            return _repository.Update(person);
+
+            var personEntity = _converter.Parse(person);
+            personEntity = _repository.Update(personEntity);
+            return _converter.Parse(personEntity);
         }
 
     }
