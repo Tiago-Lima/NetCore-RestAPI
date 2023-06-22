@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Net.Http.Headers;
 
 
 namespace NetApiWithDocker
@@ -50,8 +51,18 @@ namespace NetApiWithDocker
                 MigrateDatabase(connection);
             }
 
-            //Injeção de dependências
+            //Adicionando Content Negotiation - suporte ao formato XML
+            services.AddMvc(options =>
+            {
+                options.RespectBrowserAcceptHeader = true;
+
+                options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeHeaderValue.Parse("application/xml"));
+                options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
+            })
+        .AddXmlSerializerFormatters();
+            //Versionamento da API
             services.AddApiVersioning();
+            //Injeção de dependências
             services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
             services.AddScoped<IBookBusiness, BookBusinessImplementation>();
 
