@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using NetApiWithDocker.Business.Implementations;
 using NetApiWithDocker.Data.VO;
+using NetApiWithDocker.Hypermedia.Filters;
 
 namespace NetApiWithDocker.Controllers
 {
@@ -20,6 +21,7 @@ namespace NetApiWithDocker.Controllers
         }
 
         [HttpGet]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
             return Ok(_personBusiness.FindAll());
@@ -27,6 +29,7 @@ namespace NetApiWithDocker.Controllers
 
 
         [HttpGet("{id}")] //O metodo pode ter o mesmo nome desde que os paths sejam diferentes para não dar conflito, neste caso é passado o ID para buscar um só objeto.
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(long id)
         {
             var person = _personBusiness.FindById(id);
@@ -37,6 +40,7 @@ namespace NetApiWithDocker.Controllers
         }
 
         [HttpPost]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Post([FromBody] PersonVO person) // Vai postar o corpo (objeto Json) com os dados a serem criados
         {
             if (person == null) return BadRequest();
@@ -45,6 +49,7 @@ namespace NetApiWithDocker.Controllers
         }
 
         [HttpPut]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Put([FromBody] PersonVO person)
         {
             if (person == null) return BadRequest();

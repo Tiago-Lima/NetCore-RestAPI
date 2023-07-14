@@ -17,7 +17,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Net.Http.Headers;
-
+using NetApiWithDocker.Hypermedia.Filters;
+using NetApiWithDocker.Hypermedia.Enricher;
 
 namespace NetApiWithDocker
 {
@@ -60,6 +61,11 @@ namespace NetApiWithDocker
                 options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
             })
         .AddXmlSerializerFormatters();
+
+            var filterOptions = new HyperMediaFilterOptions();
+            filterOptions.ContentResponseEnricherList.Add(new PersonEnricher());
+
+            services.AddSingleton(filterOptions);
             //Versionamento da API
             services.AddApiVersioning();
             //Injeção de dependências
@@ -86,6 +92,8 @@ namespace NetApiWithDocker
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapControllerRoute("DefaultAPi","{controller=values}/{id?}")
+
             });
         }
 
