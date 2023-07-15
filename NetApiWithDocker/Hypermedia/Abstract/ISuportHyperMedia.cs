@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace NetApiWithDocker.Hypermedia.Abstract
 {
-    public interface ISuportHyperMedia
+    public interface ISuportHyperMediaLink
     {
         List<HyperMediaLink> Links { get; set; }
     }

@@ -64,6 +64,7 @@ namespace NetApiWithDocker
 
             var filterOptions = new HyperMediaFilterOptions();
             filterOptions.ContentResponseEnricherList.Add(new PersonEnricher());
+            filterOptions.ContentResponseEnricherList.Add(new BookEnricher());
 
             services.AddSingleton(filterOptions);
             //Versionamento da API
@@ -92,7 +93,9 @@ namespace NetApiWithDocker
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapControllerRoute("DefaultAPi","{controller=values}/{id?}")
+                endpoints.MapControllerRoute("DefaultApi", "{controller=values}/v{version=apiVersion}/{id?}");
+
+
 
             });
         }

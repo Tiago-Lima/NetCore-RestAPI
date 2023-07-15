@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace NetApiWithDocker.Hypermedia
 {
-    public abstract class ContentResponseEnricher<T> : IResponseEnricher where T : ISuportHyperMedia
+    public abstract class ContentResponseEnricher<T> : IResponseEnricher where T : ISuportHyperMediaLink
     {
         public ContentResponseEnricher()
         {
